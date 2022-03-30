@@ -9,6 +9,7 @@ int NOD(int n1, int n2);
 int resurveNumber(int a);
 void sortArray(int arr[], int length, int a);
 void showArray(int arr[], int length, int a, int b);
+void showArr(int arr[], int length);
 
 int main() {
 	setlocale(LC_ALL, "Russian");
@@ -89,9 +90,11 @@ int resurveNumber(int a) {
 void sortArray(int arr[], int length, int a) {	
 	int key = -1;
 	for (int i = 0; i < length; i++)
-		if (arr[i] == a)
+		if (arr[i] == a) {
 			key = i;
-	cout << "Первая позиция числа " << a << " в массиве = " << key << ".\n";
+			break;
+		}
+	cout << "Первая позиция числа " << a << " в массиве = " << key << ".\n";	
 	sort(arr + key + 1, arr + length);
 	cout << "[";
 	for (int i = 0; i < length; i++)
@@ -105,5 +108,11 @@ void showArray(int arr[], int length, int a, int b) {
 		arr[i] = rand() % (b - a) + a;
 		cout << arr[i] << ", ";
 	}
+	cout << "\b\b]\n";
+}
+void showArr(int arr[], int length) {
+	cout << "[";
+	for (int i = 0; i < length; i++)
+		cout << arr[i] << ", ";
 	cout << "\b\b]\n";
 }

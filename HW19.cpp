@@ -7,9 +7,9 @@ using namespace std;
 int maxDel(int a, int b);
 int NOD(int n1, int n2);
 int resurveNumber(int a);
-void sortArray(int arr[], int length, int a);
-void showArray(int arr[], int length, int a, int b);
-void showArr(int arr[], int length);
+template <typename T> T sortArray(T arr[], int length, T a);
+template <typename T> void showArray(T arr[], int length, int a, int b);
+template <typename T> void showArr(T arr[], int length);
 
 int main() {
 	setlocale(LC_ALL, "Russian");
@@ -31,13 +31,11 @@ int main() {
 	// Задача 3
 	cout << "Задача 3.\n";
 	int z3[10] = { 2, 5, 6, 3, 1, 7, 19, 15, 18, 8 };
-	cout << "Изначальный массив:\n[";
-	for (int i = 0; i < 10; i++)
-		cout << z3[i] << ", ";
-	cout << "\b\b]\n";
+	showArr(z3, 10);
 	cout << "Введите число: ";
 	cin >> n;
-	sortArray(z3, 10, n);
+	cout << sortArray(z3, 10, n) << endl;
+	showArr(z3, 10);
 	cout << endl;
 
 	//Задача 4
@@ -87,22 +85,21 @@ int resurveNumber(int a) {
 	return firstNumber;
 }
 // Задача 3
-void sortArray(int arr[], int length, int a) {	
-	int key = -1;
+template <typename T> T sortArray(T arr[], int length, T a) {	
+	int key;
 	for (int i = 0; i < length; i++)
 		if (arr[i] == a) {
 			key = i;
 			break;
 		}
-	cout << "Первая позиция числа " << a << " в массиве = " << key << ".\n";	
+
 	sort(arr + key + 1, arr + length);
-	cout << "[";
-	for (int i = 0; i < length; i++)
-		cout << arr[i] << ", ";
-	cout << "\b\b]\n";
+
+	cout << "Первая позиция числа " << a << " в массиве = ";
+	return key;
 }
 // Задача 4
-void showArray(int arr[], int length, int a, int b) {
+template <typename T> void showArray(T arr[], int length, int a, int b) {
 	cout << "[";
 	for (int i = 0; i < length; i++) {
 		arr[i] = rand() % (b - a) + a;
@@ -110,7 +107,8 @@ void showArray(int arr[], int length, int a, int b) {
 	}
 	cout << "\b\b]\n";
 }
-void showArr(int arr[], int length) {
+// Вывод массива
+template <typename T> void showArr(T arr[], int length) {
 	cout << "[";
 	for (int i = 0; i < length; i++)
 		cout << arr[i] << ", ";

@@ -86,7 +86,7 @@ int resurveNumber(int a) {
 }
 // Задача 3
 template <typename T> T sortArray(T arr[], int length, T a) {	
-	int key;
+	int key = -1;
 	for (int i = 0; i < length; i++)
 		if (arr[i] == a) {
 			key = i;
